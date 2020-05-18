@@ -51,7 +51,7 @@ zf[1].toFixed(2);
 用于表示一个固定的结构	用于表示一个列表
 
 ```javascript
-const animal:[string,number,boolean] = ['zhufeng',10,true];
+const animal:[string,number,boolean] = ['zf',10,true];
 ```
 
 ### 1.6 枚举类型(enum)
@@ -192,7 +192,7 @@ void 可以被赋值为 null 和 undefined的类型。 never 则是一个不包�
 ```javascript
 let username2;
 username2 = 10;
-username2 = 'zhufeng';
+username2 = 'zf';
 username2 = null;
 ```
 
@@ -209,9 +209,9 @@ JavaScript 的类型分为两种：原始数据类型（Primitive data types）�
 null
 undefined
 Symbol
-let name = 'zhufeng';
+let name = 'zf';
 console.log(name.toUpperCase());
-console.log((new String('zhufeng')).toUpperCase());
+console.log((new String('zf')).toUpperCase());
 当调用基本数据类型方法的时候，JavaScript 会在原始数据类型和对象类型之间做一个迅速的强制性切换
 let isOK: boolean = true; // 编译通过
 let isOK: boolean = Boolean(1) // 编译通过
@@ -228,7 +228,7 @@ let name: string | number;
 console.log(name.toString());
 name = 3;
 console.log(name.toFixed(2));
-name = 'zhufeng';
+name = 'zf';
 console.log(name.length);
 
 export {};

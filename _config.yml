@@ -12,7 +12,7 @@ timezone:
 # custom Site settings
 # more detail check out docs
 SEOTitle: Allen's blog 
-header-img: //o7bkkhiex.bkt.clouddn.com/lion-blur-bg.jpg
+header-img: https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1589745205638&di=db5cbf4d47626d0966d2a5446be77fae&imgtype=0&src=http%3A%2F%2Fpic.90sjimg.com%2Fback_pic%2Fqk%2Fback_origin_pic%2F00%2F01%2F80%2F27cb92437f07f6c681e0ce39ab77be50.jpg
 email: 634989720@qq.com
 description: "龙兆峰在 Github 上的个人博客"
 keyword: 龙兆峰 上海
@@ -22,7 +22,7 @@ favicon: # your favicon png
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://github.com/lz-allen
+url: https://lz-allen.github.io/
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -78,7 +78,28 @@ featured-tags: true                     # whether or not using Feature-Tags
 featured-condition-size: 1              # A tag will be featured if the size of it is more than this condition value
 
 # friends
-friends:  # 友链
+friends: [
+	{
+		title: "caniuse",
+		href: "https://caniuse.com/"
+	},
+	{
+		title: "Ant Design",
+		href: "https://ant.design/docs/react/introduce-cn"
+	},
+  {
+		title: "React 中文网",
+		href: "https://react.caibaojian.com/"
+	},
+  {
+    title: "Vue",
+		href: "https://cn.vuejs.org/v2/guide/"
+  },
+  {
+    title: "Element",
+		href: "https://element.faas.ele.me/#/zh-CN/component/installation"
+  }
+]
 
 # Directory
 source_dir: source
@@ -141,9 +162,9 @@ theme: Anisina
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type: git
-  repo: https://github.com/lz-allen/lzf_allen.github.io.git
-  branch: master
+  type: "git"
+  repo: "https://github.com/lz-allen/lz-allen.github.io.git"
+  branch: "master"
 
 
 # img CDN path
