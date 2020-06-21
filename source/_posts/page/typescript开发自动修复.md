@@ -1,5 +1,5 @@
 ---
-title: ESLint自动修复自动修复
+title: ESLint自动修复
 categories: web前端
 author: lz_allen
 tags:

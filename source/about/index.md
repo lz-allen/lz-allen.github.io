@@ -6,7 +6,7 @@ layout: poetry
 
 ## 个人信息
 
-- 龙兆峰/男/19902
+- 龙兆峰/男
 - 本科/计算机科学与技术
 - 工作年限：4年
 - 技术博客：<https://lz-allen.github.io>
