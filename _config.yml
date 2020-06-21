@@ -12,7 +12,7 @@ timezone:
 # custom Site settings
 # more detail check out docs
 SEOTitle: Allen's blog 
-header-img: https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1589745205638&di=db5cbf4d47626d0966d2a5446be77fae&imgtype=0&src=http%3A%2F%2Fpic.90sjimg.com%2Fback_pic%2Fqk%2Fback_origin_pic%2F00%2F01%2F80%2F27cb92437f07f6c681e0ce39ab77be50.jpg
+header-img: http://i2.tiimg.com/721744/50bc19bd03601125.jpg
 email: 634989720@qq.com
 description: "龙兆峰在 Github 上的个人博客"
 keyword: 龙兆峰 上海
@@ -70,7 +70,7 @@ ga_domain:
 
 # Sidebar settings
 sidebar-about-description: 敏而好学 不耻下问 # 个人描述
-sidebar-avatar: https://avatars2.githubusercontent.com/u/24756385?s=460&u=c1ace4b0038612c53e4e7fd787cfc409d3c18937&v=4    # use absolute URL
+sidebar-avatar: http://i2.tiimg.com/721744/3f35f1e09e1dbcda.png   # use absolute URL
 
 
 # Featured Tags
@@ -177,8 +177,8 @@ clip-avatar: "?imageView2/2/w/300/h/300/interlace/1/q/90"
 clip-home-post-bg: "?imageView2/1/w/800/h/300/interlace/1/q/70"
 
 # post default images
-post-default-img: #博文默认的图片
-post-default-img-mobile: #移动端显示的图片
+post-default-img: http://i2.tiimg.com/721744/0575a32ec6db4ec2.png #博文默认的图片
+post-default-img-mobile: http://i2.tiimg.com/721744/0575a32ec6db4ec2.png #移动端显示的图片
 
 # search api , set your custom key
 swiftype_key: 
