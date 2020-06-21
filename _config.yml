@@ -29,12 +29,13 @@ permalink_defaults:
 
 # SNS settings
 # RSS:
-weibo_username: lz-allen
-zhihu_username: lz-allen
+weibo_username: 
+zhihu_username: allen-36-9
 github_username: lz-allen
-twitter_username: lz-allen
+twitter_username: 
 facebook_username:  
 linkedin_username:  
+juejin_username: 5b5fc8ece51d4506d27ec861
 
 # Build settings
 anchorjs: false                        # if you want to customize anchor. check out line:181 of `post.html`
