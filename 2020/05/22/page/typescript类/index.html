@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="龙兆峰在 Github 上的个人博客">
+    <meta name="keyword" content="龙兆峰 上海">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-person-128.png">
+    <link rel="alternate" type="application/atom+xml" title="失眠先生" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <title>
+        
+        typescript类｜Allen&#39;s blog
+        
+    </title>
+
+    <link rel="canonical" href="https://lz-allen.github.io/2020/05/22/page/typescript类/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/blog-style.css">
+
+
+    <!-- Pygments Github CSS -->
+    
+<link rel="stylesheet" href="/css/syntax.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<style>
+
+    header.intro-header {
+        background-image: url('http://i2.tiimg.com/721744/50bc19bd03601125.jpg')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand animated pulse" href="/">
+                <span class="brand-logo">
+                    失眠先生
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">首页</a>
+                    </li>
+					
+                    
+                        
+							
+                        <li>
+                            <a href="/about/">关于</a>
+                        </li>
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/archives/">归档</a>
+                        </li>
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/categories/">文章分类</a>
+                        </li>
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/tags/">标签</a>
+                        </li>
+							
+						
+                    
+					
+					
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+<!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img"
+     src="http://i2.tiimg.com/721744/0575a32ec6db4ec2.png">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('http://i2.tiimg.com/721744/0575a32ec6db4ec2.png')
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>typescript类</h1>
+                    
+                    <span class="meta">
+                         作者 lz_allen
+                        <span>
+                          日期 2020-05-22
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#typescript"
+                           title="typescript">typescript</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            typescript类
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <h2 id="类"><a href="#类" class="headerlink" title="类"></a>类</h2><h3 id="如何定义类"><a href="#如何定义类" class="headerlink" title="如何定义类"></a>如何定义类</h3><p>“strictPropertyInitialization”: true / 启用类属性初始化的严格检查/<br>name!:string</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span></span>&#123;</span><br><span class="line">    name:string;</span><br><span class="line">    getName():<span class="keyword">void</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> p1 = <span class="keyword">new</span> Person();</span><br><span class="line">p1.name = <span class="string">'zhufeng'</span>;</span><br><span class="line">p1.getName();</span><br></pre></td></tr></table></figure>
+
+<h3 id="存取器"><a href="#存取器" class="headerlink" title="存取器"></a>存取器</h3><ul>
+<li>在 TypeScript 中，我们可以通过存取器来改变一个类中属性的读取和赋值行为</li>
+<li>构造函数</li>
+<li>主要用于初始化类的成员变量属性</li>
+<li>类的对象创建时自动调用执行</li>
+<li>没有返回值</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">    myname:string;</span><br><span class="line">    <span class="keyword">constructor</span>(myname: string) &#123;</span><br><span class="line">        <span class="keyword">this</span>.myname = myname;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">get</span> name() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.myname;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">set</span> name(value) &#123;</span><br><span class="line">        <span class="keyword">this</span>.myname = value;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> user = <span class="keyword">new</span> User(<span class="string">'zhufeng'</span>);</span><br><span class="line">user.name = <span class="string">'jiagou'</span>; </span><br><span class="line"><span class="built_in">console</span>.log(user.name); </span><br><span class="line"><span class="meta">"use strict"</span>;</span><br><span class="line"><span class="keyword">var</span> User = <span class="comment">/** @class */</span> (<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">User</span>(<span class="params">myname</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.myname = myname;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">Object</span>.defineProperty(User.prototype, <span class="string">"name"</span>, &#123;</span><br><span class="line">        <span class="keyword">get</span>: function () &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.myname;</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="keyword">set</span>: function (value) &#123;</span><br><span class="line">            <span class="keyword">this</span>.myname = value;</span><br><span class="line">        &#125;,</span><br><span class="line">        enumerable: <span class="literal">true</span>,</span><br><span class="line">        configurable: <span class="literal">true</span></span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">return</span> User;</span><br><span class="line">&#125;());</span><br><span class="line"><span class="keyword">var</span> user = <span class="keyword">new</span> User(<span class="string">'zhufeng'</span>);</span><br><span class="line">user.name = <span class="string">'jiagou'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(user.name);</span><br></pre></td></tr></table></figure>
+
+<h3 id="参数属性"><a href="#参数属性" class="headerlink" title="参数属性"></a>参数属性</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(public myname: string) &#123;&#125;</span><br><span class="line">    <span class="keyword">get</span> name() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.myname;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">set</span> name(value) &#123;</span><br><span class="line">        <span class="keyword">this</span>.myname = value;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> user = <span class="keyword">new</span> User(<span class="string">'zhufeng'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(user.name); </span><br><span class="line">user.name = <span class="string">'jiagou'</span>; </span><br><span class="line"><span class="built_in">console</span>.log(user.name);</span><br></pre></td></tr></table></figure>
+
+<h3 id="readonly"><a href="#readonly" class="headerlink" title="readonly"></a>readonly</h3><ul>
+<li>readonly修饰的变量只能在构造函数中初始化</li>
+<li>在 TypeScript 中，const 是常量标志符，其值不能被重新分配</li>
+<li>TypeScript 的类型系统同样也允许将 interface、type、 class 上的属性标识为 readonly</li>
+<li>readonly 实际上只是在编译阶段进行代码检查。而 const 则会在运行时检查（在支持 const 语法的 JavaScript 运行时环境中）</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Animal</span> </span>&#123;</span><br><span class="line">    public readonly name: string</span><br><span class="line">    <span class="keyword">constructor</span>(name:string) &#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    changeName(name:string)&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> a = <span class="keyword">new</span> Animal(<span class="string">'zhufeng'</span>);</span><br><span class="line">a.changeName(<span class="string">'jiagou'</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h3><ul>
+<li>子类继承父类后子类的实例就拥有了父类中的属性和方法，可以增强代码的可复用性\</li>
+<li>将子类公用的方法抽象出来放在父类中，自己的特殊逻辑放在子类中重写父类的逻辑</li>
+<li>super可以调用父类上的方法和属性</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    name: string;<span class="comment">//定义实例的属性，默认省略public修饰符</span></span><br><span class="line">    age: number;</span><br><span class="line">    <span class="keyword">constructor</span>(name:string,age:number) &#123;<span class="comment">//构造函数</span></span><br><span class="line">        <span class="keyword">this</span>.name=name;</span><br><span class="line">        <span class="keyword">this</span>.age=age;</span><br><span class="line">    &#125;</span><br><span class="line">    getName():string &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">    &#125;</span><br><span class="line">    setName(name:string): <span class="keyword">void</span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name=name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span> <span class="keyword">extends</span> <span class="title">Person</span></span>&#123;</span><br><span class="line">    no: number;</span><br><span class="line">    <span class="keyword">constructor</span>(name:string,age:number,no:number) &#123;</span><br><span class="line">        <span class="keyword">super</span>(name,age);</span><br><span class="line">        <span class="keyword">this</span>.no=no;</span><br><span class="line">    &#125;</span><br><span class="line">    getNo():number &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.no;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> s1=<span class="keyword">new</span> Student(<span class="string">'zf'</span>,<span class="number">10</span>,<span class="number">1</span>);</span><br><span class="line"><span class="built_in">console</span>.log(s1);</span><br></pre></td></tr></table></figure>
+
+<h3 id="类里面的修饰符"><a href="#类里面的修饰符" class="headerlink" title="类里面的修饰符"></a>类里面的修饰符</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Father</span> </span>&#123;</span><br><span class="line">    public name: string;  <span class="comment">//类里面 子类 其它任何地方外边都可以访问</span></span><br><span class="line">    protected age: number; <span class="comment">//类里面 子类 都可以访问,其它任何地方不能访问</span></span><br><span class="line">    private money: number; <span class="comment">//类里面可以访问， 子类和其它任何地方都不可以访问</span></span><br><span class="line">    <span class="keyword">constructor</span>(name:string,age:number,money:number) &#123;<span class="comment">//构造函数</span></span><br><span class="line">        <span class="keyword">this</span>.name=name;</span><br><span class="line">        <span class="keyword">this</span>.age=age;</span><br><span class="line">        <span class="keyword">this</span>.money=money;</span><br><span class="line">    &#125;</span><br><span class="line">    getName():string &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">    &#125;</span><br><span class="line">    setName(name:string): <span class="keyword">void</span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name=name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Child</span> <span class="keyword">extends</span> <span class="title">Father</span></span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(name:string,age:number,money:number) &#123;</span><br><span class="line">        <span class="keyword">super</span>(name,age,money);</span><br><span class="line">    &#125;</span><br><span class="line">    desc() &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;<span class="keyword">this</span>.name&#125;</span> <span class="subst">$&#123;<span class="keyword">this</span>.age&#125;</span> <span class="subst">$&#123;<span class="keyword">this</span>.money&#125;</span>`</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> child = <span class="keyword">new</span> Child(<span class="string">'zf'</span>,<span class="number">10</span>,<span class="number">1000</span>);</span><br><span class="line"><span class="built_in">console</span>.log(child.name);</span><br><span class="line"><span class="built_in">console</span>.log(child.age);</span><br><span class="line"><span class="built_in">console</span>.log(child.money);</span><br></pre></td></tr></table></figure>
+
+<h3 id="静态属性-静态方法"><a href="#静态属性-静态方法" class="headerlink" title="静态属性 静态方法"></a>静态属性 静态方法</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Father</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> className=<span class="string">'Father'</span>;</span><br><span class="line">    <span class="keyword">static</span> getClassName() &#123;</span><br><span class="line">        <span class="keyword">return</span> Father.className;</span><br><span class="line">    &#125;</span><br><span class="line">    public name: string;</span><br><span class="line">    <span class="keyword">constructor</span>(name:string) &#123;<span class="comment">//构造函数</span></span><br><span class="line">        <span class="keyword">this</span>.name=name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(Father.className);</span><br><span class="line"><span class="built_in">console</span>.log(Father.getClassName());</span><br></pre></td></tr></table></figure>
+
+<h3 id="装饰器"><a href="#装饰器" class="headerlink" title="装饰器"></a>装饰器</h3><ul>
+<li>装饰器是一种特殊类型的声明，它能够被附加到类声明、方法、属性或参数上，可以修改类的行为</li>
+<li>常见的装饰器有类装饰器、属性装饰器、方法装饰器和参数装饰器</li>
+<li>装饰器的写法分为普通装饰器和装饰器工厂</li>
+</ul>
+<h4 id="类装饰器"><a href="#类装饰器" class="headerlink" title="类装饰器"></a>类装饰器</h4><p>类装饰器在类声明之前声明，用来监视、修改或替换类定义</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">namespace a &#123;</span><br><span class="line">    interface Person &#123;</span><br><span class="line">        name: string;</span><br><span class="line">        eat: any</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">enhancer</span>(<span class="params">target: any</span>) </span>&#123;</span><br><span class="line">        target.prototype.name = <span class="string">'zhufeng'</span>;</span><br><span class="line">        target.prototype.eat = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'eat'</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    @enhancer</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">        <span class="keyword">constructor</span>() &#123; &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> p: Person = <span class="keyword">new</span> Person();</span><br><span class="line">    <span class="built_in">console</span>.log(p.name);</span><br><span class="line">    p.eat();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">namespace b &#123;</span><br><span class="line">    interface Person &#123;</span><br><span class="line">        name: string;</span><br><span class="line">        eat: any</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">enhancer</span>(<span class="params">name: string</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="title">enhancer</span>(<span class="params">target: any</span>) </span>&#123;</span><br><span class="line">            target.prototype.name = name;</span><br><span class="line">            target.prototype.eat = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">'eat'</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @enhancer(<span class="string">'zhufeng'</span>)</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">        <span class="keyword">constructor</span>() &#123; &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> p: Person = <span class="keyword">new</span> Person();</span><br><span class="line">    <span class="built_in">console</span>.log(p.name);</span><br><span class="line">    p.eat();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">namespace c &#123;</span><br><span class="line">    interface Person &#123;</span><br><span class="line">        name: string;</span><br><span class="line">        eat: any</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">enhancer</span>(<span class="params">target: any</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="class"><span class="keyword">class</span> </span>&#123;</span><br><span class="line">            name: string = <span class="string">'jiagou'</span></span><br><span class="line">            eat() &#123;</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">'吃饭饭'</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    @enhancer</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">        <span class="keyword">constructor</span>() &#123; &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> p: Person = <span class="keyword">new</span> Person();</span><br><span class="line">    <span class="built_in">console</span>.log(p.name);</span><br><span class="line">    p.eat();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="属性装饰器"><a href="#属性装饰器" class="headerlink" title="属性装饰器"></a>属性装饰器</h4><ul>
+<li>属性装饰器表达式会在运行时当作函数被调用，传入下列2个参数</li>
+<li>属性装饰器用来装饰属性</li>
+<li>第一个参数对于静态成员来说是类的构造函数，对于实例成员是类的原型对象</li>
+<li>第二个参数是属性的名称</li>
+<li>方法装饰器用来装饰方法</li>
+<li>第一个参数对于静态成员来说是类的构造函数，对于实例成员是类的原型对象</li>
+<li>第二个参数是方法的名称</li>
+<li>第三个参数是方法描述符</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">namespace d &#123;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">upperCase</span>(<span class="params">target: any, propertyKey: string</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">let</span> value = target[propertyKey];</span><br><span class="line">        <span class="keyword">const</span> getter = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> value;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 用来替换的setter</span></span><br><span class="line">        <span class="keyword">const</span> setter = <span class="function"><span class="keyword">function</span> (<span class="params">newVal: string</span>) </span>&#123;</span><br><span class="line">            value = newVal.toUpperCase()</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="comment">// 替换属性，先删除原先的属性，再重新定义属性</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">delete</span> target[propertyKey]) &#123;</span><br><span class="line">            <span class="built_in">Object</span>.defineProperty(target, propertyKey, &#123;</span><br><span class="line">                <span class="keyword">get</span>: getter,</span><br><span class="line">                <span class="keyword">set</span>: setter,</span><br><span class="line">                enumerable: true,</span><br><span class="line">                configurable: true</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    function noEnumerable(target: any, property: string, descriptor: PropertyDescriptor) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'target.getName'</span>, target.getName);</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'target.getAge'</span>, target.getAge);</span><br><span class="line">        descriptor.enumerable = <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">toNumber</span>(<span class="params">target: any, methodName: string, descriptor: PropertyDescriptor</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">let</span> oldMethod = descriptor.value;</span><br><span class="line">        descriptor.value = <span class="function"><span class="keyword">function</span> (<span class="params">...args: any[]</span>) </span>&#123;</span><br><span class="line">            args = args.map(<span class="function"><span class="params">item</span> =&gt;</span> <span class="built_in">parseFloat</span>(item));</span><br><span class="line">            <span class="keyword">return</span> oldMethod.apply(<span class="keyword">this</span>, args);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">        @upperCase</span><br><span class="line">        name: string = <span class="string">'zhufeng'</span></span><br><span class="line">        public <span class="keyword">static</span> age: number = <span class="number">10</span></span><br><span class="line">        <span class="keyword">constructor</span>() &#123; &#125;</span><br><span class="line">        @noEnumerable</span><br><span class="line">        getName() &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">        &#125;</span><br><span class="line">        @toNumber</span><br><span class="line">        sum(...args: any[]) &#123;</span><br><span class="line">            <span class="keyword">return</span> args.reduce(<span class="function">(<span class="params">accu: number, item: number</span>) =&gt;</span> accu + item, <span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> p: Person = <span class="keyword">new</span> Person();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> attr <span class="keyword">in</span> p) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'attr='</span>, attr);</span><br><span class="line">    &#125;</span><br><span class="line">    p.name = <span class="string">'jiagou'</span>;</span><br><span class="line">    p.getName();</span><br><span class="line">    <span class="built_in">console</span>.log(p.sum(<span class="string">"1"</span>, <span class="string">"2"</span>, <span class="string">"3"</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="参数装饰器"><a href="#参数装饰器" class="headerlink" title="参数装饰器"></a>参数装饰器</h4><ul>
+<li>会在运行时当作函数被调用，可以使用参数装饰器为类的原型增加一些元数据</li>
+<li>第1个参数对于静态成员是类的构造函数，对于实例成员是类的原型对象</li>
+<li>第2个参数的名称</li>
+<li>第3个参数在函数列表中的索引</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">namespace d &#123;</span><br><span class="line">    interface Person &#123;</span><br><span class="line">        age: number;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">addAge</span>(<span class="params">target: any, methodName: string, paramsIndex: number</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(target);</span><br><span class="line">        <span class="built_in">console</span>.log(methodName);</span><br><span class="line">        <span class="built_in">console</span>.log(paramsIndex);</span><br><span class="line">        target.age = <span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">        login(username: string, @addAge password: string) &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="keyword">this</span>.age, username, password);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> p = <span class="keyword">new</span> Person();</span><br><span class="line">    p.login(<span class="string">'zhufeng'</span>, <span class="string">'123456'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="装饰器执行顺序"><a href="#装饰器执行顺序" class="headerlink" title="装饰器执行顺序"></a>装饰器执行顺序</h3><ul>
+<li>有多个参数装饰器时：从最后一个参数依次向前执行</li>
+<li>方法和方法参数中参数装饰器先执行。</li>
+<li>类装饰器总是最后执行</li>
+<li>方法和属性装饰器，谁在前面谁先执行。因为参数属于方法一部分，所以参数会一直紧紧挨着方法执行</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">namespace e &#123;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">Class1Decorator</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">target: any</span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">"类1装饰器"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">Class2Decorator</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">target: any</span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">"类2装饰器"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">MethodDecorator</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">target: any, methodName: string, descriptor: PropertyDescriptor</span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">"方法装饰器"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">Param1Decorator</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">target: any, methodName: string, paramIndex: number</span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">"参数1装饰器"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">Param2Decorator</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">target: any, methodName: string, paramIndex: number</span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">"参数2装饰器"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">PropertyDecorator</span>(<span class="params">name: string</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">target: any, propertyName: string</span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(name + <span class="string">"属性装饰器"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Class1Decorator()</span><br><span class="line">    @Class2Decorator()</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">        @PropertyDecorator(<span class="string">'name'</span>)</span><br><span class="line">        name: string = <span class="string">'zhufeng'</span>;</span><br><span class="line">        @PropertyDecorator(<span class="string">'age'</span>)</span><br><span class="line">        age: number = <span class="number">10</span>;</span><br><span class="line">        @MethodDecorator()</span><br><span class="line">        greet(@Param1Decorator() p1: string, @Param2Decorator() p2: string) &#123; &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>/**<br>name属性装饰器<br>age属性装饰器<br>参数2装饰器<br>参数1装饰器<br>方法装饰器<br>类2装饰器<br>类1装饰器<br> */</p>
+<h3 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h3><ul>
+<li>抽象描述一种抽象的概念，无法被实例化，只能被继承</li>
+<li>无法创建抽象类的实例\</li>
+<li>抽象方法不能在抽象类中实现，只能在抽象类的具体子类中实现，而且必须实现</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">abstract <span class="class"><span class="keyword">class</span> <span class="title">Animal</span> </span>&#123;</span><br><span class="line">    name!:string;</span><br><span class="line">    abstract speak():<span class="keyword">void</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Cat</span> <span class="keyword">extends</span> <span class="title">Animal</span></span>&#123;</span><br><span class="line">    speak()&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'喵喵喵'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> animal = <span class="keyword">new</span> Animal();<span class="comment">//Cannot create an instance of an abstract class</span></span><br><span class="line">animal.speak();</span><br><span class="line"><span class="keyword">let</span> cat = <span class="keyword">new</span> Cat();</span><br><span class="line">cat.speak();</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>访问控制修饰符 private protected public</li>
+<li>只读属性 readonly</li>
+<li>静态属性 static</li>
+<li>抽象类、抽象方法 abstract</li>
+</ul>
+<h4 id="抽象类-vs-接口"><a href="#抽象类-vs-接口" class="headerlink" title="抽象类 vs 接口"></a>抽象类 vs 接口</h4><ul>
+<li>不同类之间公有的属性或方法，可以抽象成一个接口（Interfaces）</li>
+<li>而抽象类是供其他类继承的基类，抽象类不允许被实例化。抽象类中的抽象方法必须在子类中被实现</li>
+<li>抽象类本质是一个无法被实例化的类，其中能够实现方法和初始化属性，而接口仅能够用于描述,既不提供方法的实现，也不为属性进行初始化</li>
+<li>一个类可以继承一个类或抽象类，但可以实现（implements）多个接口</li>
+<li>抽象类也可以实现接口</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">abstract <span class="class"><span class="keyword">class</span> <span class="title">Animal</span></span>&#123;</span><br><span class="line">    name:string;</span><br><span class="line">    <span class="keyword">constructor</span>(name:string)&#123;</span><br><span class="line">      <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    abstract speak():<span class="keyword">void</span>;</span><br><span class="line">  &#125;</span><br><span class="line">interface Flying&#123;</span><br><span class="line">      fly():<span class="keyword">void</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Duck</span> <span class="keyword">extends</span> <span class="title">Animal</span> <span class="title">implements</span> <span class="title">Flying</span></span>&#123;</span><br><span class="line">      speak()&#123;</span><br><span class="line">          <span class="built_in">console</span>.log(<span class="string">'汪汪汪'</span>);</span><br><span class="line">      &#125;</span><br><span class="line">      fly()&#123;</span><br><span class="line">          <span class="built_in">console</span>.log(<span class="string">'我会飞'</span>);</span><br><span class="line">      &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> duck = <span class="keyword">new</span> Duck(<span class="string">'zhufeng'</span>);</span><br><span class="line">duck.speak();</span><br><span class="line">duck.fly();</span><br></pre></td></tr></table></figure>
+
+<h4 id="抽象方法"><a href="#抽象方法" class="headerlink" title="抽象方法"></a>抽象方法</h4><ul>
+<li>抽象类和方法不包含具体实现，必须在子类中实现</li>
+<li>抽象方法只能出现在抽象类中</li>
+<li>子类可以对抽象类进行不同的实现</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">abstract <span class="class"><span class="keyword">class</span> <span class="title">Animal</span></span>&#123;</span><br><span class="line">    abstract speak():<span class="keyword">void</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span> <span class="keyword">extends</span>  <span class="title">Animal</span></span>&#123;</span><br><span class="line">    speak()&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'小狗汪汪汪'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Cat</span> <span class="keyword">extends</span>  <span class="title">Animal</span></span>&#123;</span><br><span class="line">    speak()&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'小猫喵喵喵'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> dog=<span class="keyword">new</span> Dog();</span><br><span class="line"><span class="keyword">let</span> cat=<span class="keyword">new</span> Cat();</span><br><span class="line">dog.speak();</span><br><span class="line">cat.speak();</span><br></pre></td></tr></table></figure>
+
+<h3 id="重写-override-vs-重载-overload"><a href="#重写-override-vs-重载-overload" class="headerlink" title="重写(override) vs 重载(overload)"></a>重写(override) vs 重载(overload)</h3><ul>
+<li>重写是指子类重写继承自父类中的方法</li>
+<li>重载是指为同一个函数提供多个类型定义</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Animal</span></span>&#123;</span><br><span class="line">    speak(word:string):string&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'动作叫:'</span>+word;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Cat</span> <span class="keyword">extends</span> <span class="title">Animal</span></span>&#123;</span><br><span class="line">    speak(word:string):string&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'猫叫:'</span>+word;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> cat = <span class="keyword">new</span> Cat();</span><br><span class="line"><span class="built_in">console</span>.log(cat.speak(<span class="string">'hello'</span>));</span><br><span class="line"><span class="comment">//--------------------------------------------</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">double</span>(<span class="params">val:number</span>):<span class="title">number</span></span></span><br><span class="line"><span class="function"><span class="title">function</span> <span class="title">double</span>(<span class="params">val:string</span>):<span class="title">string</span></span></span><br><span class="line"><span class="function"><span class="title">function</span> <span class="title">double</span>(<span class="params">val:any</span>):<span class="title">any</span></span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(<span class="keyword">typeof</span> val == <span class="string">'number'</span>)&#123;</span><br><span class="line">    <span class="keyword">return</span> val *<span class="number">2</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> val + val;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> r = double(<span class="number">1</span>);</span><br><span class="line"><span class="built_in">console</span>.log(r);</span><br></pre></td></tr></table></figure>
+
+<h3 id="继承-vs-多态"><a href="#继承-vs-多态" class="headerlink" title="继承 vs 多态"></a>继承 vs 多态</h3><ul>
+<li>继承(Inheritance)子类继承父类，子类除了拥有父类的所有特性外，还有一些更具体的特性</li>
+<li>多态(Polymorphism)由继承而产生了相关的不同的类，对同一个方法可以有不同的行为</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Animal</span></span>&#123;</span><br><span class="line">    speak(word:string):string&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'Animal: '</span>+word;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Cat</span> <span class="keyword">extends</span> <span class="title">Animal</span></span>&#123;</span><br><span class="line">    speak(word:string):string&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'Cat:'</span>+word;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span> <span class="keyword">extends</span> <span class="title">Animal</span></span>&#123;</span><br><span class="line">    speak(word:string):string&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'Dog:'</span>+word;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> cat = <span class="keyword">new</span> Cat();</span><br><span class="line"><span class="built_in">console</span>.log(cat.speak(<span class="string">'hello'</span>));</span><br><span class="line"><span class="keyword">let</span> dog = <span class="keyword">new</span> Dog();</span><br><span class="line"><span class="built_in">console</span>.log(dog.speak(<span class="string">'hello'</span>));</span><br></pre></td></tr></table></figure>
+
+                <hr>
+                
+
+                <ul class="pager">
+                    
+                    
+                    <li class="next">
+                        <a href="/2019/05/21/page/typescript开发自动修复/" data-toggle="tooltip" data-placement="top"
+                           title="ESLint自动修复自动修复">下一篇 &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+
+                
+
+
+                <!--加入新的评论系统-->
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#类"><span class="toc-text">类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#如何定义类"><span class="toc-text">如何定义类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#存取器"><span class="toc-text">存取器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参数属性"><span class="toc-text">参数属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#readonly"><span class="toc-text">readonly</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#继承"><span class="toc-text">继承</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#类里面的修饰符"><span class="toc-text">类里面的修饰符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#静态属性-静态方法"><span class="toc-text">静态属性 静态方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#装饰器"><span class="toc-text">装饰器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#类装饰器"><span class="toc-text">类装饰器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#属性装饰器"><span class="toc-text">属性装饰器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#参数装饰器"><span class="toc-text">参数装饰器</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#装饰器执行顺序"><span class="toc-text">装饰器执行顺序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#抽象类"><span class="toc-text">抽象类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#抽象类-vs-接口"><span class="toc-text">抽象类 vs 接口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#抽象方法"><span class="toc-text">抽象方法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#重写-override-vs-重载-overload"><span class="toc-text">重写(override) vs 重载(overload)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#继承-vs-多态"><span class="toc-text">继承 vs 多态</span></a></li></ol></li></ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5 class="text-center">
+                        <a href="/tags/">FEATURED TAGS</a>
+                    </h5>
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#typescript"
+                           title="typescript">typescript</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <div style="margin-top: 20px;">
+                    <h5 class="text-center">FRIENDS</h5>
+                    <ul class="list-inline text-center">
+                        
+                        <li><a href="https://caniuse.com/" target="_blank" rel="noopener">caniuse</a></li>
+                        
+                        <li><a href="https://ant.design/docs/react/introduce-cn" target="_blank" rel="noopener">Ant Design</a></li>
+                        
+                        <li><a href="https://react.caibaojian.com/" target="_blank" rel="noopener">React 中文网</a></li>
+                        
+                        <li><a href="https://cn.vuejs.org/v2/guide/" target="_blank" rel="noopener">Vue</a></li>
+                        
+                        <li><a href="https://element.faas.ele.me/#/zh-CN/component/installation" target="_blank" rel="noopener">Element</a></li>
+                        
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/allen-36-9">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a target="_blank" href="https://juejin.im/user/5b5fc8ece51d4506d27ec861">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa  fa-stack-1x fa-inverse">掘</i>
+                                    </span>
+                        </a>
+                    </li>
+                
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/lz-allen">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; 失眠先生 2020
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/blog.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://lz-allen.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','','2.0.0');
+</script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!--wechat title img-->
+<img class="wechat-title-img" src="http://i2.tiimg.com/721744/3f35f1e09e1dbcda.png">
+</body>
+
+</html>
