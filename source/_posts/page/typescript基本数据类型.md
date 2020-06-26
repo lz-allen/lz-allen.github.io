@@ -10,7 +10,7 @@ date: 2019-05-17 15:19:26
 
 ### 1.布尔类型(boolean)
 
-```javascript
+```typescript
 
 let isLzf: boolean=false;
 
@@ -18,19 +18,19 @@ let isLzf: boolean=false;
 
 ### 1.2数字类型(number)
 
-```javascript
+```typescript
 let age: number=10;
 ```
 
 ### 1.3 字符串类型(string)
 
-```javascript
+```typescript
 let firstname: string='lzf';
 ```
 
 ### 1.4 数组类型(array)
 
-```javascript
+```typescript
 let arr2: number[]=[4,5,6];
 let arr3: Array<number>=[7,8,9];
 ```
@@ -39,7 +39,7 @@ let arr3: Array<number>=[7,8,9];
 
 在 TypeScript 的基础类型中，元组（ Tuple ）表示一个已知数量和类型的数组
 
-```javascript
+```typescript
 let zf:[string,number] = ['zf',5];
 zf[0].length;
 zf[1].toFixed(2);
@@ -50,7 +50,7 @@ zf[1].toFixed(2);
 有预定义的长度	没有长度限制
 用于表示一个固定的结构	用于表示一个列表
 
-```javascript
+```typescript
 const animal:[string,number,boolean] = ['zf',10,true];
 ```
 
@@ -61,7 +61,7 @@ const animal:[string,number,boolean] = ['zf',10,true];
 
 #### 1.6.1 普通枚举
 
-```javascript
+```typescript
 enum Gender{
     GIRL,
     BOY
@@ -81,7 +81,7 @@ console.log(`今天是星期${Week.MONDAY}`);
 常数枚举与普通枚举的区别是，它会在编译阶段被删除，并且不能包含计算成员。
 假如包含了计算成员，则会在编译阶段报错
 
-```javascript
+```typescript
 const enum Colors {
     Red,
     Yellow,
@@ -99,7 +99,7 @@ any就是可以赋值给任意类型
 类型转换遇到困难时
 数据结构太复杂难以定义
 
-```javascript
+```typescript
 let root:any=document.getElementById('root');
 root.style.color='red';
 let root:(HTMLElement|null)=document.getElementById('root');
@@ -111,7 +111,7 @@ root!.style.color='red';//非空断言操作符
 null 和 undefined 是其它类型的子类型，可以赋值给其它类型，如数字类型，此时，赋值后的类型会变成 null 或 undefined
 strictNullChecks 参数用于新的严格空检查模式,在严格空检查模式下， null 和 undefined 值都不属于任何一个类型，它们只能赋值给自己这种类型或者 any
 
-```javascript
+```typescript
 let x: number;
 x = 1;
 x = undefined;
@@ -128,7 +128,7 @@ y = null;
 void 表示没有任何类型
 当一个函数没有返回值时，TS 会认为它的返回值是 void 类型。
 
-```javascript
+```typescript
 function greeting(name:string):void {
     console.log('hello',name);
     //当我们声明一个变量类型是 void 的时候，它的非严格模式(strictNullChecks:false)下仅可以被赋值为 null 和 undefined
@@ -143,7 +143,7 @@ function greeting(name:string):void {
 never是其它类型(null undefined)的子类型，代表不会出现的值
 作为不会返回（ return ）的函数的返回值类型
 
-```javascript
+```typescript
 // 返回never的函数 必须存在 无法达到（ unreachable ） 的终点
 function error(message: string): never {
     throw new Error(message);
@@ -166,7 +166,7 @@ function infiniteLoop(): never {
 在 TS 中， null 和 undefined 是任何类型的有效值，所以无法正确地检测它们是否被错误地使用。于是 TS 引入了 --strictNullChecks 这一种检查模式
 由于引入了 --strictNullChecks ，在这一模式下，null 和 undefined 能被检测到。所以 TS 需要一种新的底部类型（ bottom type ）。所以就引入了 never。
 
-```javascript
+```typescript
 // Compiled with --strictNullChecks
 function fn(x: number | string) {
   if (typeof x === 'number') {
@@ -189,7 +189,7 @@ void 可以被赋值为 null 和 undefined的类型。 never 则是一个不包�
 定义时未赋值就会推论成any类型
 如果定义的时候就赋值就能利用到类型推论
 
-```javascript
+```typescript
 let username2;
 username2 = 10;
 username2 = 'zf';
@@ -205,7 +205,7 @@ JavaScript 的类型分为两种：原始数据类型（Primitive data types）�
 数值
 字符串
 
-```javascript
+```typescript
 null
 undefined
 Symbol
@@ -223,7 +223,7 @@ let isOK: boolean = new Boolean(1); // 编译失败   期望的 isOK 是一个�
 联合类型（Union Types）表示取值可以为多种类型中的一种
 未赋值时联合类型上只能访问两个类型共有的属性和方法
 
-```javascript
+```typescript
 let name: string | number;
 console.log(name.toString());
 name = 3;
@@ -239,7 +239,7 @@ export {};
 类型断言可以将一个联合类型的变量，指定为一个更加具体的类型
 不能将联合类型断言为不存在的类型
 
-```javascript
+```typescript
 let name: string | number;
 console.log((name as string).length);
 console.log((name as number).toFixed(2));
@@ -250,7 +250,7 @@ console.log((name as boolean));
 
 可以把字符串、数字、布尔值字面量组成一个联合类型
 
-```javascript
+```typescript
 type ZType = 1 | 'One'|true;
 let t1:ZType = 1;
 let t2:ZType = 'One';

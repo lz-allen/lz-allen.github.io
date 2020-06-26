@@ -9,7 +9,7 @@ date: 2019-05-21 23:59:31
 
 ## 模块安装
 
-```javascript
+```typescript
 cnpm i eslint typescript @typescript-eslint/parser @typescript-eslint/eslint-plugin --save-dev
 ```
 
@@ -17,7 +17,7 @@ cnpm i eslint typescript @typescript-eslint/parser @typescript-eslint/eslint-plu
 
 - .eslintrc.js
 
-```javascript
+```typescript
 module.exports = {
     "parser":"@typescript-eslint/parser",
     "plugins":["@typescript-eslint"],
@@ -41,7 +41,7 @@ module.exports = {
 安装vscode的eslint插件
 配置参数 .vscode\settings.json
 
-```javascript
+```typescript
 {
   "eslint.autoFixOnSave": true,
   "eslint.validate": [
@@ -75,13 +75,13 @@ module.exports = {
 
 ### 安装pre-commit、
 
-```javascript
+```typescript
 npm install pre-commit --save-dev
 ```
 
 ### 脚本配置
 
-```javascript
+```typescript
  "scripts": {
     "build": "tsc",
     "eslint": "eslint src --ext .ts",

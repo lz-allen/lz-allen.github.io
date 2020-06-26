@@ -14,7 +14,7 @@ date: 2020-05-22 08:16:28
 "strictPropertyInitialization": true / 启用类属性初始化的严格检查/
 name!:string
 
-```javascript
+```typescript
 class Person{
     name:string;
     getName():void{
@@ -34,7 +34,7 @@ p1.getName();
 - 类的对象创建时自动调用执行
 - 没有返回值
 
-```javascript
+```typescript
 class User {
     myname:string;
     constructor(myname: string) {
@@ -75,7 +75,7 @@ console.log(user.name);
 
 ### 参数属性
 
-```javascript
+```typescript
 class User {
     constructor(public myname: string) {}
     get name() {
@@ -99,7 +99,7 @@ console.log(user.name);
 - TypeScript 的类型系统同样也允许将 interface、type、 class 上的属性标识为 readonly
 - readonly 实际上只是在编译阶段进行代码检查。而 const 则会在运行时检查（在支持 const 语法的 JavaScript 运行时环境中）
 
-```javascript
+```typescript
 class Animal {
     public readonly name: string
     constructor(name:string) {
@@ -120,7 +120,7 @@ a.changeName('jiagou');
 - 将子类公用的方法抽象出来放在父类中，自己的特殊逻辑放在子类中重写父类的逻辑
 - super可以调用父类上的方法和属性
 
-```javascript
+```typescript
 class Person {
     name: string;//定义实例的属性，默认省略public修饰符
     age: number;
@@ -152,7 +152,7 @@ console.log(s1);
 
 ### 类里面的修饰符
 
-```javascript
+```typescript
 class Father {
     public name: string;  //类里面 子类 其它任何地方外边都可以访问
     protected age: number; //类里面 子类 都可以访问,其它任何地方不能访问
@@ -186,7 +186,7 @@ console.log(child.money);
 
 ### 静态属性 静态方法
 
-```javascript
+```typescript
 class Father {
     static className='Father';
     static getClassName() {
@@ -212,7 +212,7 @@ console.log(Father.getClassName());
 
 类装饰器在类声明之前声明，用来监视、修改或替换类定义
 
-```javascript
+```typescript
 namespace a {
     interface Person {
         name: string;
@@ -290,7 +290,7 @@ namespace c {
 - 第二个参数是方法的名称
 - 第三个参数是方法描述符
 
-```javascript
+```typescript
 namespace d {
     function upperCase(target: any, propertyKey: string) {
         let value = target[propertyKey];
@@ -354,7 +354,7 @@ namespace d {
 - 第2个参数的名称
 - 第3个参数在函数列表中的索引
 
-```javascript
+```typescript
 namespace d {
     interface Person {
         age: number;
@@ -382,7 +382,7 @@ namespace d {
 - 类装饰器总是最后执行
 - 方法和属性装饰器，谁在前面谁先执行。因为参数属于方法一部分，所以参数会一直紧紧挨着方法执行
 
-```javascript
+```typescript
 namespace e {
     function Class1Decorator() {
         return function (target: any) {
@@ -444,7 +444,7 @@ age属性装饰器
 - 无法创建抽象类的实例\
 - 抽象方法不能在抽象类中实现，只能在抽象类的具体子类中实现，而且必须实现
 
-```javascript
+```typescript
 abstract class Animal {
     name!:string;
     abstract speak():void;
@@ -473,7 +473,7 @@ cat.speak();
 - 一个类可以继承一个类或抽象类，但可以实现（implements）多个接口
 - 抽象类也可以实现接口
 
-```javascript
+```typescript
 abstract class Animal{
     name:string;
     constructor(name:string){
@@ -503,7 +503,7 @@ duck.fly();
 - 抽象方法只能出现在抽象类中
 - 子类可以对抽象类进行不同的实现
 
-```javascript
+```typescript
 abstract class Animal{
     abstract speak():void;
 }
@@ -528,7 +528,7 @@ cat.speak();
 - 重写是指子类重写继承自父类中的方法
 - 重载是指为同一个函数提供多个类型定义
 
-```javascript
+```typescript
 class Animal{
     speak(word:string):string{
         return '动作叫:'+word;
@@ -560,7 +560,7 @@ console.log(r);
 - 继承(Inheritance)子类继承父类，子类除了拥有父类的所有特性外，还有一些更具体的特性
 - 多态(Polymorphism)由继承而产生了相关的不同的类，对同一个方法可以有不同的行为
   
-```javascript
+```typescript
 class Animal{
     speak(word:string):string{
         return 'Animal: '+word;
