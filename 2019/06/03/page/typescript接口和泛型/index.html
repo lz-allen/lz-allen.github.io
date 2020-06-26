@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="龙兆峰在 Github 上的个人博客">
+    <meta name="keyword" content="龙兆峰 上海">
+    <meta name="theme-color" content="#600090">
+    <meta name="msapplication-navbutton-color" content="#600090">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
+    <link rel="shortcut icon" href="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-person-128.png">
+    <link rel="alternate" type="application/atom+xml" title="失眠先生" href="/atom.xml">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
+    <title>
+        
+        typescript接口和泛型｜Allen&#39;s blog
+        
+    </title>
+
+    <link rel="canonical" href="https://lz-allen.github.io/2019/06/03/page/typescript接口和泛型/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/blog-style.css">
+
+
+    <!-- Pygments Github CSS -->
+    
+<link rel="stylesheet" href="/css/syntax.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<style>
+
+    header.intro-header {
+        background-image: url('http://i2.tiimg.com/721744/50bc19bd03601125.jpg')
+    }
+</style>
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="" class="animated fadeIn">
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
+" data-ishome = "false" >
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand animated pulse" href="/">
+                <span class="brand-logo">
+                    失眠先生
+                </span>
+                's Blog
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <!-- /.navbar-collapse -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">首页</a>
+                    </li>
+					
+                    
+                        
+							
+                        <li>
+                            <a href="/about/">关于</a>
+                        </li>
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/categories/">文章分类</a>
+                        </li>
+							
+						
+                    
+                        
+							
+                        <li>
+                            <a href="/tags/">标签</a>
+                        </li>
+							
+						
+                    
+					
+					
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+//    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+<!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img"
+     src="http://i2.tiimg.com/721744/0575a32ec6db4ec2.png">
+
+
+<style>
+    
+    header.intro-header {
+        background-image: url('http://i2.tiimg.com/721744/0575a32ec6db4ec2.png')
+    }
+
+    
+</style>
+
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>typescript接口和泛型</h1>
+                    
+                    <span class="meta">
+                         作者 lz_allen
+                        <span>
+                          日期 2019-06-03
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#typescript"
+                           title="typescript">typescript</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="post-title-haojen">
+        <span>
+            typescript接口和泛型
+        </span>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <h2 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h2><ul>
+<li>接口一方面可以在面向对象编程中表示为行为的抽象，另外可以用来描述对象的形状</li>
+<li>接口就是把一些类中共有的属性和方法抽象出来,可以用来约束实现此接口的类</li>
+<li>一个类可以继承另一个类并实现多个接口<br>接口像插件一样是用来增强类的，而抽象类是具体类的抽象概念<br>一个类可以实现多个接口，一个接口也可以被多个类实现，但一个类的可以有多个子类，但只能有一个父类</li>
+</ul>
+<h3 id="interface中可以用分号或者逗号分割每一项，也可以什么都不加"><a href="#interface中可以用分号或者逗号分割每一项，也可以什么都不加" class="headerlink" title="interface中可以用分号或者逗号分割每一项，也可以什么都不加"></a>interface中可以用分号或者逗号分割每一项，也可以什么都不加</h3><h3 id="对象的形状"><a href="#对象的形状" class="headerlink" title="对象的形状"></a>对象的形状</h3><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//接口可以用来描述`对象的形状`,少属性或者多属性都会报错</span></span><br><span class="line"><span class="keyword">interface</span> Speakable&#123;</span><br><span class="line">    speak():<span class="built_in">void</span>;</span><br><span class="line">    name?:<span class="built_in">string</span>;<span class="comment">//？表示可选属性</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> speakman:Speakable = &#123;</span><br><span class="line">    speak()&#123;&#125;,<span class="comment">//少属性会报错</span></span><br><span class="line">    name,</span><br><span class="line">    age<span class="comment">//多属性也会报错</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="行为的抽象"><a href="#行为的抽象" class="headerlink" title="行为的抽象"></a>行为的抽象</h3><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//接口可以在面向对象编程中表示为行为的抽象</span></span><br><span class="line"><span class="keyword">interface</span> Speakable&#123;</span><br><span class="line">    speak():<span class="built_in">void</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">interface</span> Eatable&#123;</span><br><span class="line">    eat():<span class="built_in">void</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//一个类可以实现多个接口</span></span><br><span class="line"><span class="keyword">class</span> Person <span class="keyword">implements</span> Speakable,Eatable&#123;</span><br><span class="line">    speak()&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'Person说话'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    eat()&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> TangDuck <span class="keyword">implements</span> Speakable&#123;</span><br><span class="line">    speak()&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'TangDuck说话'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    eat()&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="任意属性"><a href="#任意属性" class="headerlink" title="任意属性"></a>任意属性</h3><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//无法预先知道有哪些新的属性的时候,可以使用 `[propName:string]:any`,propName名字是任意的</span></span><br><span class="line"><span class="keyword">interface</span> Person &#123;</span><br><span class="line">  readonly id: <span class="built_in">number</span>;</span><br><span class="line">  name: <span class="built_in">string</span>;</span><br><span class="line">  [propName: <span class="built_in">string</span>]: <span class="built_in">any</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> p1 = &#123;</span><br><span class="line">  id:<span class="number">1</span>,</span><br><span class="line">  name:<span class="string">'zf'</span>,</span><br><span class="line">  age:<span class="number">10</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="接口的继承"><a href="#接口的继承" class="headerlink" title="接口的继承"></a>接口的继承</h3><p>一个接口可以继承自另外一个接口</p>
+<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">interface</span> Speakable &#123;</span><br><span class="line">    speak(): <span class="built_in">void</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">interface</span> SpeakChinese <span class="keyword">extends</span> Speakable &#123;</span><br><span class="line">    speakChinese(): <span class="built_in">void</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> Person <span class="keyword">implements</span> SpeakChinese &#123;</span><br><span class="line">    speak() &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'Person'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    speakChinese() &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'speakChinese'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="readonly"><a href="#readonly" class="headerlink" title="readonly"></a>readonly</h4><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line">用 readonly 定义只读属性可以避免由于多人协作或者项目较为复杂等因素造成对象的值被重写</span><br><span class="line"><span class="keyword">interface</span> Person&#123;</span><br><span class="line">  readonly id:<span class="built_in">number</span>;</span><br><span class="line">  name:<span class="built_in">string</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> tom:Person = &#123;</span><br><span class="line">  id :<span class="number">1</span>,</span><br><span class="line">  name:<span class="string">'zf'</span></span><br><span class="line">&#125;</span><br><span class="line">tom.id = <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="函数类型接口"><a href="#函数类型接口" class="headerlink" title="函数类型接口"></a>函数类型接口</h3><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line">对方法传入的参数和返回值进行约束</span><br><span class="line"><span class="keyword">interface</span> discount&#123;</span><br><span class="line">  (price:<span class="built_in">number</span>):<span class="built_in">number</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> cost:discount = <span class="function"><span class="keyword">function</span>(<span class="params">price:<span class="built_in">number</span></span>):<span class="title">number</span></span>&#123;</span><br><span class="line">   <span class="keyword">return</span> price * <span class="number">.8</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="可索引接口"><a href="#可索引接口" class="headerlink" title="可索引接口"></a>可索引接口</h3><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line">对数组和对象进行约束</span><br><span class="line">userInterface 表示index的类型是 <span class="built_in">number</span>，那么值的类型必须是 <span class="built_in">string</span></span><br><span class="line">UserInterface2 表示：index 的类型是 <span class="built_in">string</span>，那么值的类型必须是 <span class="built_in">string</span></span><br><span class="line"><span class="keyword">interface</span> UserInterface &#123;</span><br><span class="line">  [index:<span class="built_in">number</span>]:<span class="built_in">string</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> arr:UserInterface = [<span class="string">'zf1'</span>,<span class="string">'zf2'</span>];</span><br><span class="line"><span class="built_in">console</span>.log(arr);</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> UserInterface2 &#123;</span><br><span class="line">  [index:<span class="built_in">string</span>]:<span class="built_in">string</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> obj:UserInterface2 = &#123;name:<span class="string">'zf'</span>&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="类接口"><a href="#类接口" class="headerlink" title="类接口"></a>类接口</h3><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line">对类的约束</span><br><span class="line"><span class="keyword">interface</span> Speakable &#123;</span><br><span class="line">    name: <span class="built_in">string</span>;</span><br><span class="line">    speak(words: <span class="built_in">string</span>): <span class="built_in">void</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> Dog <span class="keyword">implements</span> Speakable &#123;</span><br><span class="line">    name!: <span class="built_in">string</span>;</span><br><span class="line">    speak(words:<span class="built_in">string</span>) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(words);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> dog = <span class="keyword">new</span> Dog();</span><br><span class="line">dog.speak(<span class="string">'汪汪汪'</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="构造函数的类型"><a href="#构造函数的类型" class="headerlink" title="构造函数的类型"></a>构造函数的类型</h3><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line">在 TypeScript 中，我们可以用 <span class="keyword">interface</span> 来描述类</span><br><span class="line">同时也可以使用<span class="keyword">interface</span>里特殊的new()关键字来描述类的构造函数类型</span><br><span class="line">class Animal&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(<span class="params"><span class="keyword">public</span> name:<span class="built_in">string</span></span>)&#123;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">interface</span> WithNameClass&#123;</span><br><span class="line">  <span class="keyword">new</span>(name:<span class="built_in">string</span>):Animal</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createAnimal</span>(<span class="params">clazz:WithNameClass,name:<span class="built_in">string</span></span>)</span>&#123;</span><br><span class="line">   <span class="keyword">return</span> <span class="keyword">new</span> clazz(name);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> a = createAnimal(Animal,<span class="string">'zf'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(a.name);</span><br></pre></td></tr></table></figure>
+
+<h2 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h2><ul>
+<li>泛型（Generics）是指在定义函数、接口或类的时候，不预先指定具体的类型，而在使用的时候再指定类型的一种特性</li>
+<li>泛型T作用域只限于函数内部使用</li>
+</ul>
+<h3 id="泛型函数"><a href="#泛型函数" class="headerlink" title="泛型函数"></a>泛型函数</h3><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line">首先，我们来实现一个函数 createArray，它可以创建一个指定长度的数组，同时将每一项都填充一个默认值</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createArray</span>(<span class="params">length: <span class="built_in">number</span>, value: <span class="built_in">any</span></span>): <span class="title">Array</span>&lt;<span class="title">any</span>&gt; </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> result: <span class="built_in">any</span> = [];</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; length; i++) &#123;</span><br><span class="line">    result[i] = value;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> result = createArray(<span class="number">3</span>,<span class="string">'x'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(result);</span><br><span class="line">使用了泛型</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createArray</span>&lt;<span class="title">T</span>&gt;(<span class="params">length: <span class="built_in">number</span>, value: T</span>): <span class="title">Array</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> result: T[] = [];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; length; i++) &#123;</span><br><span class="line">      result[i] = value;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="keyword">let</span> result = createArray2&lt;<span class="built_in">string</span>&gt;(<span class="number">3</span>,<span class="string">'x'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(result);</span><br></pre></td></tr></table></figure>
+
+<h3 id="类数组"><a href="#类数组" class="headerlink" title="类数组"></a>类数组</h3><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line">类数组（<span class="built_in">Array</span>-like <span class="built_in">Object</span>）不是数组类型，比如 <span class="built_in">arguments</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> args: IArguments = <span class="built_in">arguments</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; args.length; i++) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(args[i]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">sum(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> root = <span class="built_in">document</span>.getElementById(<span class="string">'root'</span>);</span><br><span class="line"><span class="keyword">let</span> children: HTMLCollection = (root <span class="keyword">as</span> HTMLElement).children;</span><br><span class="line">children.length;</span><br><span class="line"><span class="keyword">let</span> nodeList: NodeList = (root <span class="keyword">as</span> HTMLElement).childNodes;</span><br><span class="line">nodeList.length;</span><br></pre></td></tr></table></figure>
+
+<h3 id="泛型类"><a href="#泛型类" class="headerlink" title="泛型类"></a>泛型类</h3><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> MyArray&lt;T&gt;&#123;</span><br><span class="line">    <span class="keyword">private</span> list:T[]=[];</span><br><span class="line">    add(value:T) &#123;</span><br><span class="line">        <span class="keyword">this</span>.list.push(value);</span><br><span class="line">    &#125;</span><br><span class="line">    getMax():T &#123;</span><br><span class="line">        <span class="keyword">let</span> result=<span class="keyword">this</span>.list[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;<span class="keyword">this</span>.list.length;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">this</span>.list[i]&gt;result) &#123;</span><br><span class="line">                result=<span class="keyword">this</span>.list[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> arr=<span class="keyword">new</span> MyArray();</span><br><span class="line">arr.add(<span class="number">1</span>); arr.add(<span class="number">2</span>); arr.add(<span class="number">3</span>);</span><br><span class="line"><span class="keyword">let</span> ret = arr.getMax();</span><br><span class="line"><span class="built_in">console</span>.log(ret);</span><br></pre></td></tr></table></figure>
+
+<h3 id="泛型接口"><a href="#泛型接口" class="headerlink" title="泛型接口"></a>泛型接口</h3><p>泛型接口可以用来约束函数</p>
+<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">interface</span> Calculate&#123;</span><br><span class="line">  &lt;T&gt;(a:T,b:T):T</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> add:Calculate = <span class="function"><span class="keyword">function</span>&lt;<span class="title">T</span>&gt;(<span class="params">a:T,b:T</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> a;</span><br><span class="line">&#125;</span><br><span class="line">add&lt;<span class="built_in">number</span>&gt;(<span class="number">1</span>,<span class="number">2</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="多个类型参数"><a href="#多个类型参数" class="headerlink" title="多个类型参数"></a>多个类型参数</h3><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line">泛型可以有多个</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">swap</span>&lt;<span class="title">A</span>,<span class="title">B</span>&gt;(<span class="params">tuple:[A,B]</span>):[<span class="title">B</span>,<span class="title">A</span>]</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> [tuple[<span class="number">1</span>],tuple[<span class="number">0</span>]];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> swapped = swap&lt;<span class="built_in">string</span>,<span class="built_in">number</span>&gt;([<span class="string">'a'</span>,<span class="number">1</span>]);</span><br><span class="line"><span class="built_in">console</span>.log(swapped);</span><br><span class="line"><span class="built_in">console</span>.log(swapped[<span class="number">0</span>].toFixed(<span class="number">2</span>));</span><br><span class="line"><span class="built_in">console</span>.log(swapped[<span class="number">1</span>].length);</span><br><span class="line"><span class="number">7.7</span> 默认泛型类型</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createArray3</span>&lt;<span class="title">T</span>=<span class="title">number</span>&gt;(<span class="params">length: <span class="built_in">number</span>, value: T</span>): <span class="title">Array</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> result: T[] = [];</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; length; i++) &#123;</span><br><span class="line">    result[i] = value;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> result2 = createArray3(<span class="number">3</span>,<span class="string">'x'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(result2);</span><br></pre></td></tr></table></figure>
+
+<h3 id="泛型约束"><a href="#泛型约束" class="headerlink" title="泛型约束"></a>泛型约束</h3><p>在函数中使用泛型的时候，由于预先并不知道泛型的类型，所以不能随意访问相应类型的属性或方法。</p>
+<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">logger</span>&lt;<span class="title">T</span>&gt;(<span class="params">val: T</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(val.length); <span class="comment">//直接访问会报错</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//可以让泛型继承一个接口</span></span><br><span class="line"><span class="keyword">interface</span> LengthWise &#123;</span><br><span class="line">    length: <span class="built_in">number</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//可以让泛型继承一个接口</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">logger2</span>&lt;<span class="title">T</span> <span class="title">extends</span> <span class="title">LengthWise</span>&gt;(<span class="params">val: T</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(val.length)</span><br><span class="line">&#125;</span><br><span class="line">logger2(<span class="string">'zf'</span>);</span><br><span class="line">logger2(<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="泛型接口定义"><a href="#泛型接口定义" class="headerlink" title="泛型接口定义"></a>泛型接口定义</h3><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line">定义接口的时候也可以指定泛型</span><br><span class="line"><span class="keyword">interface</span> Cart&lt;T&gt;&#123;</span><br><span class="line">  list:T[]</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> cart:Cart&lt;&#123;name:<span class="built_in">string</span>,price:<span class="built_in">number</span>&#125;&gt; = &#123;</span><br><span class="line">  list:[&#123;name:<span class="string">'zf'</span>,price:<span class="number">10</span>&#125;]</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(cart.list[<span class="number">0</span>].name,cart.list[<span class="number">0</span>].price);</span><br></pre></td></tr></table></figure>
+
+<h3 id="泛型类型别名"><a href="#泛型类型别名" class="headerlink" title="泛型类型别名"></a>泛型类型别名</h3><p>泛型类型别名可以表达更复杂的类型</p>
+<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">type</span> Cart&lt;T&gt; = &#123;list:T[]&#125; | T[];</span><br><span class="line"><span class="keyword">let</span> c1:Cart&lt;<span class="built_in">string</span>&gt; = &#123;list:[<span class="string">'1'</span>]&#125;;</span><br><span class="line"><span class="keyword">let</span> c2:Cart&lt;<span class="built_in">number</span>&gt; = [<span class="number">1</span>];</span><br></pre></td></tr></table></figure>
+
+<h3 id="泛型接口-vs-泛型类型别名"><a href="#泛型接口-vs-泛型类型别名" class="headerlink" title="泛型接口 vs 泛型类型别名"></a>泛型接口 vs 泛型类型别名</h3><ul>
+<li>接口创建了一个新的名字，它可以在其他任意地方被调用。而类型别名并不创建新的名字，例如报错信息就不会使用别名</li>
+<li>类型别名不能被 extends和 implements,这时我们应该尽量使用接口代替类型别名</li>
+<li>当我们需要使用联合类型或者元组类型的时候，类型别名会更合适</li>
+</ul>
+
+                <hr>
+                
+
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2020/05/22/page/typescript类/" data-toggle="tooltip" data-placement="top"
+                           title="typescript类">&larr; 上一篇</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/2019/05/21/page/typescript开发自动修复/" data-toggle="tooltip" data-placement="top"
+                           title="ESLint自动修复">下一篇 &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+
+                
+
+
+                <!--加入新的评论系统-->
+                
+
+                
+
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#接口"><span class="toc-text">接口</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#interface中可以用分号或者逗号分割每一项，也可以什么都不加"><span class="toc-text">interface中可以用分号或者逗号分割每一项，也可以什么都不加</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#对象的形状"><span class="toc-text">对象的形状</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#行为的抽象"><span class="toc-text">行为的抽象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#任意属性"><span class="toc-text">任意属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#接口的继承"><span class="toc-text">接口的继承</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#readonly"><span class="toc-text">readonly</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#函数类型接口"><span class="toc-text">函数类型接口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#可索引接口"><span class="toc-text">可索引接口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#类接口"><span class="toc-text">类接口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#构造函数的类型"><span class="toc-text">构造函数的类型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#泛型"><span class="toc-text">泛型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#泛型函数"><span class="toc-text">泛型函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#类数组"><span class="toc-text">类数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#泛型类"><span class="toc-text">泛型类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#泛型接口"><span class="toc-text">泛型接口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#多个类型参数"><span class="toc-text">多个类型参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#泛型约束"><span class="toc-text">泛型约束</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#泛型接口定义"><span class="toc-text">泛型接口定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#泛型类型别名"><span class="toc-text">泛型类型别名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#泛型接口-vs-泛型类型别名"><span class="toc-text">泛型接口 vs 泛型类型别名</span></a></li></ol></li></ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5 class="text-center">
+                        <a href="/tags/">FEATURED TAGS</a>
+                    </h5>
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#typescript"
+                           title="typescript">typescript</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <div style="margin-top: 20px;">
+                    <h5 class="text-center">FRIENDS</h5>
+                    <ul class="list-inline text-center">
+                        
+                        <li><a href="https://caniuse.com/" target="_blank" rel="noopener">caniuse</a></li>
+                        
+                        <li><a href="https://ant.design/docs/react/introduce-cn" target="_blank" rel="noopener">Ant Design</a></li>
+                        
+                        <li><a href="https://react.caibaojian.com/" target="_blank" rel="noopener">React 中文网</a></li>
+                        
+                        <li><a href="https://cn.vuejs.org/v2/guide/" target="_blank" rel="noopener">Vue</a></li>
+                        
+                        <li><a href="https://element.faas.ele.me/#/zh-CN/component/installation" target="_blank" rel="noopener">Element</a></li>
+                        
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
+
+    </div>
+</article>
+
+
+
+
+
+
+
+<!-- Footer -->
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <br>
+                <ul class="list-inline text-center">
+                
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/allen-36-9">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a target="_blank" href="https://juejin.im/user/5b5fc8ece51d4506d27ec861">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa  fa-stack-1x fa-inverse">掘</i>
+                                    </span>
+                        </a>
+                    </li>
+                
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/lz-allen">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; 失眠先生 2020
+                    <br>
+                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
+                    <br>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/blog.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://lz-allen.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- swiftype -->
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','','2.0.0');
+</script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<!--wechat title img-->
+<img class="wechat-title-img" src="http://i2.tiimg.com/721744/3f35f1e09e1dbcda.png">
+</body>
+
+</html>
