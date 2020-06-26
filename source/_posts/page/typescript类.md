@@ -22,7 +22,7 @@ class Person{
     }
 }
 let p1 = new Person();
-p1.name = 'zhufeng';
+p1.name = 'zf';
 p1.getName();
 ```
 
@@ -48,7 +48,7 @@ class User {
     }
 }
 
-let user = new User('zhufeng');
+let user = new User('zf');
 user.name = 'jiagou'; 
 console.log(user.name); 
 "use strict";
@@ -68,7 +68,7 @@ var User = /** @class */ (function () {
     });
     return User;
 }());
-var user = new User('zhufeng');
+var user = new User('zf');
 user.name = 'jiagou';
 console.log(user.name);
 ```
@@ -86,7 +86,7 @@ class User {
     }
 }
 
-let user = new User('zhufeng');
+let user = new User('zf');
 console.log(user.name); 
 user.name = 'jiagou'; 
 console.log(user.name);
@@ -110,7 +110,7 @@ class Animal {
     }
 }
 
-let a = new Animal('zhufeng');
+let a = new Animal('zf');
 a.changeName('jiagou');
 ```
 
@@ -219,7 +219,7 @@ namespace a {
         eat: any
     }
     function enhancer(target: any) {
-        target.prototype.name = 'zhufeng';
+        target.prototype.name = 'zf';
         target.prototype.eat = function () {
             console.log('eat');
         }
@@ -247,7 +247,7 @@ namespace b {
         }
     }
 
-    @enhancer('zhufeng')
+    @enhancer('zf')
     class Person {
         constructor() { }
     }
@@ -325,7 +325,7 @@ namespace d {
     }
     class Person {
         @upperCase
-        name: string = 'zhufeng'
+        name: string = 'zf'
         public static age: number = 10
         constructor() { }
         @noEnumerable
@@ -371,7 +371,7 @@ namespace d {
         }
     }
     let p = new Person();
-    p.login('zhufeng', '123456')
+    p.login('zf', '123456')
 }
 ```
 
@@ -419,7 +419,7 @@ namespace e {
     @Class2Decorator()
     class Person {
         @PropertyDecorator('name')
-        name: string = 'zhufeng';
+        name: string = 'zf';
         @PropertyDecorator('age')
         age: number = 10;
         @MethodDecorator()
@@ -492,7 +492,7 @@ class Duck extends Animal implements Flying{
           console.log('我会飞');
       }
 }
-let duck = new Duck('zhufeng');
+let duck = new Duck('zf');
 duck.speak();
 duck.fly();
 ```
