@@ -12,7 +12,7 @@ timezone:
 # custom Site settings
 # more detail check out docs
 SEOTitle: Allen's blog
-header-img: http://www.lzf-allen.top/24756385.png
+header-img: http://www.lzf-allen.top/timg.jpeg
 email: 634989720@qq.com
 description: "龙兆峰在 Github 上的个人博客"
 keyword: 龙兆峰 上海
@@ -178,8 +178,8 @@ clip-avatar: "?imageView2/2/w/300/h/300/interlace/1/q/90"
 clip-home-post-bg: "?imageView2/1/w/800/h/300/interlace/1/q/70"
 
 # post default images
-post-default-img: http://i2.tiimg.com/721744/0575a32ec6db4ec2.png #博文默认的图片
-post-default-img-mobile: http://i2.tiimg.com/721744/0575a32ec6db4ec2.png #移动端显示的图片
+post-default-img: http://www.lzf-allen.top/post_pc.jpeg #博文默认的图片
+post-default-img-mobile: http://www.lzf-allen.top/post.jpeg #移动端显示的图片
 
 # search api , set your custom key
 swiftype_key:
