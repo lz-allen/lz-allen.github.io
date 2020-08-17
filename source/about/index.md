@@ -10,7 +10,7 @@ layout: poetry
 - 本科/计算机科学与技术
 - 工作年限：4年
 - 技术博客：<https://lz-allen.github.io>
-- Github：<http://github.com/easychen>
+- Github：<https://github.com/lz-allen>
 - 期望职位：高级前端工程师
 - 电话：13381678729
 

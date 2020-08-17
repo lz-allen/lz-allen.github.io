@@ -4,7 +4,7 @@ categories: web前端
 author: lz_allen
 tags:
   - typescript
-date: 2020-05-22 08:16:28
+date: 2019-05-22 08:16:28
 ---
 
 ## 类
